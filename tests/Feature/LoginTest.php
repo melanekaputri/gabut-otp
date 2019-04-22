@@ -13,8 +13,8 @@ class LoginTest extends TestCase
     // Function user cant access home until verifired
     public function before_verified()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+       
+        $this->logInUser();
         $this->get('/home')->assertRedirect('/');
 
     }
@@ -22,8 +22,7 @@ class LoginTest extends TestCase
     // Function user can access home if verfired
     public function after_verified()
     {
-        $user = factory(User::class)->create(['isVerified'=>1]);
-        $this->actingAs($user);
+        $this->logInUser(['isVerified'=>1]);
         $this->get('/home')->assertStatus(200);
     }
 }

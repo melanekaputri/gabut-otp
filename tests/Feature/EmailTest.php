@@ -18,7 +18,7 @@ class EmailTest extends TestCase
     {
         Mail::fake();
 
-        $this->withExceptionHandling();
+        // $this->withExceptionHandling();
         $user = factory(User::class)->create();
         $res = $this->post('/login',['email'=>$user->email,'password'=>'secret']);
 
@@ -32,7 +32,7 @@ class EmailTest extends TestCase
     {
         Mail::fake();
 
-        // $this->withExceptionHandling();
+        $this->withExceptionHandling();
         $user = factory(User::class)->create();
         $res = $this->post('/login',['email'=>$user->email,'password'=>'absssss']);
 
@@ -40,7 +40,7 @@ class EmailTest extends TestCase
     }
 
     //Test verified optional
-    public function otp_stred_for_user()
+    public function otp_stored_for_user()
     {
         $user = factory(User::class)->create();
         $res = $this->post('/login',['email'=>$user->email,'password'=>'secret']);
